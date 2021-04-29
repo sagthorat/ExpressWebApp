@@ -40,9 +40,25 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
+    if(!req.query.address){
+
+        return res.send({error: "Please provide an address"})
+    }
     res.send({
         forecast: 'It is snowing',
-        location: 'Philadelphia'
+        location: req.query.address
+    })
+})
+
+app.get('/products',(req,res)=>{
+
+    if(!req.query.search){
+
+        return res.send({error: "Please provide a search term"})
+    }
+    console.log(req.query.search);//this will collect query string parameters in URL and store in object
+    res.send({
+        products: []
     })
 })
 
